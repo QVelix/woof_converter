@@ -2,8 +2,8 @@ use std::io;
 use std::io::Write;
 
 enum Mode {
-    LONG,
-    SHORT,
+    Long,
+    Short,
 }
 
 fn main() {
@@ -23,8 +23,8 @@ fn main() {
         }
 
         let result = match mode {
-            Mode::LONG => convert_text_to_woof_long(input),
-            Mode::SHORT => convert_text_to_woof_short(input),
+            Mode::Long => convert_text_to_woof_long(input),
+            Mode::Short => convert_text_to_woof_short(input),
         };
 
         println!("{}", result);
@@ -32,23 +32,21 @@ fn main() {
 }
 
 fn choose_mode() -> Mode {
-    loop {
-        let mut input = String::new();
+    let mut input = String::new();
 
-        print!("Выберите режим 1 - длинный формат, 2 - короткий: ");
-        io::stdout().flush().expect("Ошибка вывода");
+    print!("Выберите режим 1 - длинный формат, 2 - короткий: ");
+    io::stdout().flush().expect("Ошибка вывода");
 
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Не подходящий ответ");
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Не подходящий ответ");
 
-        let input = input.trim();
+    let input = input.trim();
 
-        return match input {
-            "1" => Mode::LONG,
-            "2" => Mode::SHORT,
-            _ => Mode::LONG,
-        };
+    match input {
+        "1" => Mode::Long,
+        "2" => Mode::Short,
+        _ => Mode::Long,
     }
 }
 
@@ -107,7 +105,7 @@ fn convert_text_to_woof_short(text: String) -> String {
             }
         }
 
-        let mut i: usize = 0;
+        let mut i: usize;
 
         if word.chars().count() > 0 {
             i = 1;
