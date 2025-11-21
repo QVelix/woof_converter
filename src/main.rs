@@ -1,4 +1,4 @@
-use std::io::{stdin, stdout, Write};
+use std::io::{Write, stdin, stdout};
 
 enum Mode {
     Long,
@@ -36,9 +36,7 @@ fn choose_mode() -> Mode {
     print!("Выберите режим 1 - длинный формат, 2 - короткий: ");
     stdout().flush().expect("Ошибка вывода");
 
-    stdin()
-        .read_line(&mut input)
-        .expect("Не подходящий ответ");
+    stdin().read_line(&mut input).expect("Не подходящий ответ");
 
     let input = input.trim();
 
