@@ -3,21 +3,18 @@ use std::io::Write;
 
 enum Mode {
     LONG,
-    SHORT
+    SHORT,
 }
 
 fn main() {
     loop {
-
         let mode = choose_mode();
 
         println!("Введите текст, чтобы выйти введите \"exit\"");
 
         let mut input = String::new();
 
-        io::stdin()
-            .read_line(&mut input)
-            .expect("Ошибка ввода");
+        io::stdin().read_line(&mut input).expect("Ошибка ввода");
 
         input = input.trim().to_string();
 
@@ -39,8 +36,7 @@ fn choose_mode() -> Mode {
         let mut input = String::new();
 
         print!("Выберите режим 1 - длинный формат, 2 - короткий: ");
-        io::stdout()
-            .flush().expect("Ошибка вывода");
+        io::stdout().flush().expect("Ошибка вывода");
 
         io::stdin()
             .read_line(&mut input)
@@ -51,8 +47,8 @@ fn choose_mode() -> Mode {
         return match input {
             "1" => Mode::LONG,
             "2" => Mode::SHORT,
-            _ => Mode::LONG
-        }
+            _ => Mode::LONG,
+        };
     }
 }
 
@@ -65,8 +61,7 @@ fn convert_text_to_woof_long(text: String) -> String {
 
         if word.chars().next().unwrap().is_uppercase() {
             new_word += "W"
-        }
-        else {
+        } else {
             new_word += "w"
         }
 
@@ -82,8 +77,7 @@ fn convert_text_to_woof_long(text: String) -> String {
             for _ in 0..count_o {
                 new_word += "o";
             }
-        }
-        else {
+        } else {
             new_word += "oo";
         }
 
@@ -117,8 +111,7 @@ fn convert_text_to_woof_short(text: String) -> String {
 
         if word.chars().count() > 0 {
             i = 1;
-        }
-        else {
+        } else {
             new_word += "Woof";
             i = 2;
         }
